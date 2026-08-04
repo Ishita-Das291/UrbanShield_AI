@@ -1,0 +1,11 @@
+ultralytics>=8.3.0
+torch>=2.0.0
+torchvision
+opencv-python
+numpy
+Pillow
+ImageHash
+geopy
+python-dateutil
+pydantic>=2.0
+loguru
