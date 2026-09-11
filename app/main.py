@@ -3,9 +3,10 @@ from sqlalchemy.orm import Session
 from sqlalchemy import text
 from app.database import get_db
 from app.api.hazards import router as hazards_router
-from app.api.routing import router as routing_router  # <-- 1. ADD THIS IMPORT
+from app.api.routing import router as routing_router
 from app.core.scheduler import start_scheduler
 from contextlib import asynccontextmanager
+from fastapi.middleware.cors import CORSMiddleware
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
@@ -21,9 +22,20 @@ app = FastAPI(
     lifespan=lifespan
 )
 
+# --- CORS MIDDLEWARE INJECTED HERE ---
+# This explicitly tells your backend to accept requests from your React frontend
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Allows requests from any origin (e.g., Vercel, Localhost)
+    allow_credentials=True,
+    allow_methods=["*"],  # Allows all HTTP methods (POST, GET, PATCH, etc.)
+    allow_headers=["*"],  # Allows all headers
+)
+# -------------------------------------
+
 # Register endpoints
 app.include_router(hazards_router)
-app.include_router(routing_router)  # <-- 2. REGISTER THE ROUTER
+app.include_router(routing_router)
 
 @app.get("/")
 def read_root():

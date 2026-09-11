@@ -3,3 +3,5 @@ __pycache__/
 .env
 .vscode/
 *.sqlite3
+urbanshield-dashboard/node_modules/
+__pycache__/

@@ -1,0 +1,10 @@
+@import "tailwindcss";
+
+/* Required for React Leaflet */
+@import "leaflet/dist/leaflet.css";
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: #f3f4f6;
+}

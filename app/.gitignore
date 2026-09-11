@@ -25,3 +25,7 @@ runs/
 
 # PyTorch
 *.pth
+
+
+urbanshield-dashboard/node_modules/
+__pycache__/
